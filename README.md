@@ -41,6 +41,10 @@ This walks through the whole pipeline: it prints dataset statistics, embeds and 
 
 The first run downloads the dataset and both embedding models from Hugging Face and computes the embeddings, so it takes a while. After that, the embeddings and the Qdrant collection are reused from `.data/` (gitignored). Delete that folder to rebuild from scratch.
 
+### Memory use
+
+`BATCH_SIZE` in `embeddings.py` sets how many documents go through an embedding model at once. It is set to 4 because FastEmbed's default of 256 used over 20 GB of memory on these 100 documents, while 4 keeps the peak around 2 GB. Raise it if you have memory to spare, or lower it if the embedding step runs out of memory.
+
 ## Tests
 
 ```sh
