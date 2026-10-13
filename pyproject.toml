@@ -1,8 +1,10 @@
 [project]
 name = "pubmed-hybrid-retrieval"
 version = "0.1.0"
-description = "Add your description here"
+description = "Hybrid dense + sparse retrieval over PubMedQA with FastEmbed, Qdrant, and Reciprocal Rank Fusion"
 readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [
     { name = "Meghan Yee", email = "meghacoda@gmail.com" }
 ]

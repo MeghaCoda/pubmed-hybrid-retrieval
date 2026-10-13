@@ -7,7 +7,7 @@ from fastembed import SparseEmbedding, SparseTextEmbedding, TextEmbedding
 
 from pubmed_hybrid_retrieval.paths import EMBEDDINGS_CACHE
 
-SPARSE_MODEL_NAME = "prithvida/Splade_PP_en_v1"
+SPARSE_MODEL_NAME = "prithivida/Splade_PP_en_v1"
 DENSE_MODEL_NAME = "BAAI/bge-large-en-v1.5"
 # How many texts go through the model at once. fastembed's default of 256 used
 # over 20 GB of memory on our 100 documents; 4 keeps the peak around 2 GB.
