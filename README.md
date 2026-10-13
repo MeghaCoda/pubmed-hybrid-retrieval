@@ -19,7 +19,7 @@ Query ──► Embed Query ──┤                            ├──► RR
 1. Load the `pqa_artificial` config of PubMedQA and take the first 100 rows.
 2. Build one searchable document per row from the labelled context paragraphs and the conclusion. The question is left out on purpose: it is what users search with, so including it would let every document match its own query.
 3. Embed each document twice: `BAAI/bge-large-en-v1.5` (dense, 1024 dimensions) and `prithivida/Splade_PP_en_v1` (sparse).
-4. Index both vectors per point in a single Qdrant collection.
+4. Store both vectors per point in a single Qdrant collection.
 5. For a query, run the dense and sparse searches in one batched request.
 6. Fuse the two result lists with RRF (`k = 60`) and label each result as `BOTH`, `Dense only`, or `Sparse only`.
 
@@ -37,7 +37,7 @@ uv sync
 uv run pubmed-hybrid-retrieval
 ```
 
-This walks through the whole pipeline: it prints dataset statistics, embeds and indexes the documents, prints the top dense and sparse results for a set of test queries, and ends with the RRF-fused ranking for "vitamin D".
+This walks through the whole pipeline: it prints dataset statistics, embeds and stores the documents, prints the top dense and sparse results for a set of test queries, and ends with the RRF-fused ranking for "vitamin D".
 
 The first run downloads the dataset and both embedding models from Hugging Face and computes the embeddings, so it takes a while. After that, the embeddings and the Qdrant collection are reused from `.data/` (gitignored). Delete that folder to rebuild from scratch.
 
